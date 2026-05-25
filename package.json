@@ -5,6 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "build:cf": "opennextjs-cloudflare build",
+    "preview": "opennextjs-cloudflare preview",
     "start": "next start",
     "lint": "next lint"
   },
@@ -23,7 +25,8 @@
     "jspdf-autotable": "^3.8.2"
   },
   "devDependencies": {
-    "@netlify/plugin-nextjs": "^5.3.3",
+    "@opennextjs/cloudflare": "^1.0.0",
+    "wrangler": "^4.0.0",
     "typescript": "^5",
     "@types/node": "^20",
     "@types/react": "^18",
