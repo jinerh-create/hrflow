@@ -25,7 +25,7 @@
     "jspdf-autotable": "^3.8.2"
   },
   "devDependencies": {
-    "@opennextjs/cloudflare": "^1.0.0",
+    "@opennextjs/cloudflare": "1.19.11",
     "wrangler": "^4.0.0",
     "typescript": "^5",
     "@types/node": "^20",
