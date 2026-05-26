@@ -22,7 +22,7 @@ interface Stats {
 
 const STAT_CARDS = (s: Stats) => [
   { label: 'Total Employees', value: s.totalEmployees, icon: Users, bg: 'bg-blue-50', color: 'text-blue-600', trend: '+2%' },
-  { label: 'Present Today', value: s.presentToday, icon: UserCheck, bg: 'bg-emerald-50', color: 'text-emerald-600', trend: null },
+  { label: 'Present Today', value: s.presentToday, icon: UserCheck, bg: 'bg-teal-50', color: 'text-teal-600', trend: null },
   { label: 'Absent Today', value: s.absentToday, icon: UserX, bg: 'bg-red-50', color: 'text-red-500', trend: null },
   { label: 'Late Today', value: s.lateToday, icon: Clock, bg: 'bg-amber-50', color: 'text-amber-600', trend: null },
   { label: 'Pending Leaves', value: s.pendingLeaves, icon: CalendarOff, bg: 'bg-purple-50', color: 'text-purple-600', trend: null },
@@ -78,10 +78,10 @@ export default function Dashboard() {
   return (
     <div className="space-y-6">
       {/* Welcome banner */}
-      <div className="bg-emerald-500 rounded-2xl p-6 flex items-center justify-between text-white shadow-lg shadow-emerald-200">
+      <div className="rounded-2xl p-6 flex items-center justify-between text-white shadow-lg" style={{ background: '#0DC9A0', boxShadow: '0 8px 24px rgba(13,201,160,0.25)' }}>
         <div>
           <h1 className="text-xl font-bold">Welcome back! 👋</h1>
-          <p className="text-emerald-100 text-sm mt-1">Here's what's happening in your organization today.</p>
+          <p className="text-sm mt-1" style={{ color: 'rgba(255,255,255,0.85)' }}>Here's what's happening in your organization today.</p>
         </div>
         <div className="hidden sm:flex items-center gap-3">
           <Link href="/employees" className="flex items-center gap-1.5 bg-white/20 hover:bg-white/30 transition-colors text-sm font-semibold px-4 py-2 rounded-xl">
@@ -99,7 +99,7 @@ export default function Dashboard() {
                 <p className="text-xs font-medium text-gray-400 uppercase tracking-wide">{c.label}</p>
                 <p className={cn('text-2xl font-bold mt-1.5', c.color)}>{c.value}</p>
                 {c.trend && (
-                  <p className="flex items-center gap-1 text-xs text-emerald-600 mt-1 font-medium">
+                  <p className="flex items-center gap-1 text-xs mt-1 font-medium" style={{ color: '#0DC9A0' }}>
                     <ArrowUpRight size={12} />{c.trend} this month
                   </p>
                 )}
@@ -120,7 +120,7 @@ export default function Dashboard() {
               <h2 className="font-bold text-gray-800">Pending Leave Requests</h2>
               <p className="text-xs text-gray-400 mt-0.5">Needs your approval</p>
             </div>
-            <Link href="/leave" className="flex items-center gap-1 text-sm text-emerald-600 font-semibold hover:text-emerald-700">
+            <Link href="/leave" className="flex items-center gap-1 text-sm font-semibold hover:opacity-80 transition-opacity" style={{ color: '#0DC9A0' }}>
               View all <ArrowUpRight size={14} />
             </Link>
           </div>
@@ -156,7 +156,7 @@ export default function Dashboard() {
               <h2 className="font-bold text-gray-800">Announcements</h2>
               <p className="text-xs text-gray-400 mt-0.5">Latest updates</p>
             </div>
-            <Link href="/announcements" className="text-sm text-emerald-600 font-semibold hover:text-emerald-700">
+            <Link href="/announcements" className="text-sm font-semibold hover:opacity-80 transition-opacity" style={{ color: '#0DC9A0' }}>
               All →
             </Link>
           </div>
@@ -167,11 +167,8 @@ export default function Dashboard() {
           ) : (
             <div className="space-y-4">
               {announcements.map((a, i) => (
-                <div key={a.id} className={cn(
-                  'p-3 rounded-xl',
-                  i === 0 ? 'bg-emerald-50 border border-emerald-100' : 'bg-gray-50'
-                )}>
-                  {a.is_pinned && <span className="badge bg-emerald-100 text-emerald-700 text-[10px] mb-1">Pinned</span>}
+                <div key={a.id} className="p-3 rounded-xl" style={i === 0 ? { background: '#EDFDF9', border: '1px solid rgba(13,201,160,0.2)' } : { background: '#F9FAFB' }}>
+                  {a.is_pinned && <span className="badge text-[10px] mb-1" style={{ background: 'rgba(13,201,160,0.15)', color: '#0AA88A' }}>Pinned</span>}
                   <p className="font-semibold text-sm text-gray-800">{a.title}</p>
                   <p className="text-xs text-gray-500 mt-1 line-clamp-2">{a.content}</p>
                   <p className="text-xs text-gray-400 mt-1.5">{fmtDate(a.created_at)}</p>
@@ -188,7 +185,7 @@ export default function Dashboard() {
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
           {[
             { label: 'Add Employee', href: '/employees', icon: Users, color: 'bg-blue-50 text-blue-600' },
-            { label: 'Record Attendance', href: '/attendance', icon: UserCheck, color: 'bg-emerald-50 text-emerald-600' },
+            { label: 'Record Attendance', href: '/attendance', icon: UserCheck, color: 'bg-teal-50 text-teal-600' },
             { label: 'Review Leaves', href: '/leave', icon: CalendarOff, color: 'bg-purple-50 text-purple-600' },
             { label: 'Run Payroll', href: '/payroll', icon: Banknote, color: 'bg-indigo-50 text-indigo-600' },
           ].map(q => (

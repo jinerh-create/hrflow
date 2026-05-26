@@ -39,12 +39,12 @@ export default function Sidebar() {
     <aside className="fixed top-0 left-0 h-screen w-[260px] bg-white border-r border-gray-100 flex flex-col z-30 shadow-sm">
       {/* Logo */}
       <div className="flex items-center gap-3 px-5 py-5 border-b border-gray-100">
-        <div className="w-9 h-9 rounded-xl bg-emerald-500 flex items-center justify-center shadow-sm">
+        <div className="w-9 h-9 rounded-xl flex items-center justify-center shadow-sm" style={{ background: '#0DC9A0' }}>
           <Building2 className="w-5 h-5 text-white" />
         </div>
         <div>
           <div className="text-gray-900 font-bold text-base leading-none">HRFlow</div>
-          <div className="text-emerald-600 text-xs mt-0.5 font-medium">Management System</div>
+          <div className="text-xs mt-0.5 font-medium" style={{ color: '#0DC9A0' }}>Management System</div>
         </div>
       </div>
 
@@ -56,10 +56,17 @@ export default function Sidebar() {
             <Link key={href} href={href} className={cn(
               'flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all',
               active
-                ? 'bg-emerald-50 text-emerald-700'
+                ? 'text-gray-800'
                 : 'text-gray-500 hover:text-gray-800 hover:bg-gray-50'
-            )}>
-              <Icon className={cn('flex-shrink-0', active ? 'text-emerald-600' : 'text-gray-400')} size={18} />
+            )}
+            style={active ? { background: '#E6FAF5' } : undefined}
+            >
+              <Icon
+                className="flex-shrink-0"
+                size={18}
+                style={{ color: active ? '#0DC9A0' : undefined }}
+                color={active ? '#0DC9A0' : '#9CA3AF'}
+              />
               {label}
             </Link>
           );
@@ -67,10 +74,12 @@ export default function Sidebar() {
       </nav>
 
       {/* Upgrade CTA */}
-      <div className="mx-3 mb-3 rounded-2xl bg-emerald-500 p-4 text-white">
+      <div className="mx-3 mb-3 rounded-2xl p-4 text-white" style={{ background: '#0DC9A0' }}>
         <p className="text-xs font-bold mb-1">Level Up Your HR System</p>
-        <p className="text-[11px] text-emerald-100 leading-snug mb-3">Take full control with advanced modules and extended quotas.</p>
-        <button className="w-full py-1.5 rounded-lg bg-white text-emerald-700 text-xs font-bold hover:bg-emerald-50 transition-colors">
+        <p className="text-[11px] leading-snug mb-3" style={{ color: 'rgba(255,255,255,0.85)' }}>
+          Take full control with advanced modules and extended quotas.
+        </p>
+        <button className="w-full py-1.5 rounded-lg bg-white text-xs font-bold hover:opacity-90 transition-opacity" style={{ color: '#0DC9A0' }}>
           Get HRFlow Pro
         </button>
       </div>
