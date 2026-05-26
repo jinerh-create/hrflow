@@ -18,9 +18,9 @@ jobs:
           NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
           NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
       - name: Prepare deployment
-        run: cp .open-next/worker.js .open-next/_worker.js
+        run: cp .open-next/worker.js .open-next/assets/_worker.js
       - name: Deploy to Cloudflare Pages
-        run: npx wrangler pages deploy .open-next --project-name=hrflow --branch=master
+        run: npx wrangler pages deploy .open-next/assets --project-name=hrflow --branch=master
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
