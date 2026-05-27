@@ -55,7 +55,7 @@ export default function Sidebar() {
         flexShrink: 0,
       }}>
         <img
-          src="/squad-logo.png"
+          src="https://raw.githubusercontent.com/jinerh-create/hrflow/master/public/squad-logo.png"
           alt="SQUAD"
           style={{ height: 44, width: 'auto', objectFit: 'contain' }}
         />

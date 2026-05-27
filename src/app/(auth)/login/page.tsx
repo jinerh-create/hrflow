@@ -25,7 +25,7 @@ export default function LoginPage() {
     <div className="min-h-screen bg-gradient-to-br from-navy-950 via-navy-900 to-blue-950 flex items-center justify-center p-4">
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
-          <img src="/squad-logo.png" alt="SQUAD" style={{ height: 90, objectFit: 'contain', marginBottom: 4 }} />
+          <img src="https://raw.githubusercontent.com/jinerh-create/hrflow/master/public/squad-logo.png" alt="SQUAD" style={{ height: 90, objectFit: 'contain', marginBottom: 4 }} />
           <p className="text-blue-300 mt-1">HR Management System</p>
         </div>
 
