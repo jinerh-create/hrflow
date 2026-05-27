@@ -25,7 +25,17 @@ export default function LoginPage() {
     <div className="min-h-screen bg-gradient-to-br from-navy-950 via-navy-900 to-blue-950 flex items-center justify-center p-4">
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
-          <img src="/squad-logo.png" alt="SQUAD" style={{ height: 80, margin: '0 auto 12px', display: 'block', objectFit: 'contain' }} />
+          <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 10 }}>
+            <svg width="72" height="64" viewBox="0 0 38 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="9" cy="9" r="5" fill="white" fillOpacity="0.7"/>
+              <path d="M1 31 C1 20 9 18 9 18 C9 18 17 20 17 31" stroke="white" strokeOpacity="0.7" strokeWidth="3.5" strokeLinecap="round" fill="none"/>
+              <circle cx="19" cy="7" r="6" fill="white"/>
+              <path d="M7 32 C7 18 19 16 19 16 C19 16 31 18 31 32" stroke="white" strokeWidth="4" strokeLinecap="round" fill="none"/>
+              <circle cx="29" cy="9" r="5" fill="white" fillOpacity="0.7"/>
+              <path d="M21 31 C21 20 29 18 29 18 C29 18 37 20 37 31" stroke="white" strokeOpacity="0.7" strokeWidth="3.5" strokeLinecap="round" fill="none"/>
+            </svg>
+          </div>
+          <h1 style={{ fontSize: 32, fontWeight: 800, color: 'white', letterSpacing: '-1px', margin: 0 }}>SQUAD</h1>
           <p className="text-blue-300 mt-1">HR Management System</p>
         </div>
 

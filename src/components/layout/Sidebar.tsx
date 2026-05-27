@@ -53,12 +53,14 @@ export default function Sidebar() {
         borderBottom: '1px solid #E8EDF5',
         flexShrink: 0,
       }}>
-        <img
-          src="/squad-logo.png"
-          alt="SQUAD"
-          style={{ height: 38, width: 'auto', objectFit: 'contain' }}
-          onError={e => { (e.target as HTMLImageElement).style.display = 'none'; }}
-        />
+        <svg width="38" height="34" viewBox="0 0 38 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="9" cy="9" r="5" fill="#2D3748"/>
+          <path d="M1 31 C1 20 9 18 9 18 C9 18 17 20 17 31" stroke="#2D3748" strokeWidth="3.5" strokeLinecap="round" fill="none"/>
+          <circle cx="19" cy="7" r="6" fill="#2563EB"/>
+          <path d="M7 32 C7 18 19 16 19 16 C19 16 31 18 31 32" stroke="#2563EB" strokeWidth="4" strokeLinecap="round" fill="none"/>
+          <circle cx="29" cy="9" r="5" fill="#2D3748"/>
+          <path d="M21 31 C21 20 29 18 29 18 C29 18 37 20 37 31" stroke="#2D3748" strokeWidth="3.5" strokeLinecap="round" fill="none"/>
+        </svg>
         <div>
           <div style={{ fontSize: 16, fontWeight: 800, color: '#0F172A', letterSpacing: '-0.5px', lineHeight: 1 }}>SQUAD</div>
           <div style={{ fontSize: 10, color: '#94A3B8', fontWeight: 500, marginTop: 2, letterSpacing: '0.05em' }}>MANAGEMENT SYSTEM</div>
