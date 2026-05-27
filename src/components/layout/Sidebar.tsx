@@ -63,7 +63,7 @@ export default function Sidebar() {
           <Building2 size={20} color="white" />
         </div>
         <div>
-          <div style={{ fontSize: 15, fontWeight: 700, color: '#0F172A', lineHeight: 1 }}>HRFlow</div>
+          <div style={{ fontSize: 15, fontWeight: 700, color: '#0F172A', lineHeight: 1 }}>SQUAD</div>
           <div style={{ fontSize: 11, color: '#0DC9A0', marginTop: 3, fontWeight: 600 }}>Management System</div>
         </div>
       </div>
@@ -110,7 +110,7 @@ export default function Sidebar() {
           fontSize: 12, fontWeight: 700, cursor: 'pointer', border: 'none',
           fontFamily: 'inherit',
         }}>
-          Get HRFlow Pro
+          Get SQUAD Pro
         </button>
       </div>
 

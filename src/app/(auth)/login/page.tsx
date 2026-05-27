@@ -28,7 +28,7 @@ export default function LoginPage() {
           <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center shadow-xl mx-auto mb-4">
             <Building2 className="w-8 h-8 text-white" />
           </div>
-          <h1 className="text-3xl font-bold text-white">HRFlow</h1>
+          <h1 className="text-3xl font-bold text-white">SQUAD</h1>
           <p className="text-blue-300 mt-1">HR Management System</p>
         </div>
 

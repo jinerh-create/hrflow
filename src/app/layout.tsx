@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'HRFlow — HR Management System',
+  title: 'SQUAD — HR Management System',
   description: 'Modern HR management for teams',
 };
 
