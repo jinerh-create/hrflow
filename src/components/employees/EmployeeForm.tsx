@@ -50,15 +50,16 @@ export default function EmployeeForm({ onSaved, onCancel, employee }: Props) {
   const sb = getSupabase();
 
   useEffect(() => {
-    Promise.all([
-      sb.from('departments').select('*').order('name'),
-      sb.from('designations').select('*').order('name'),
-    ]).then(([d, des]) => {
-      setDepartments(d.data ?? []);
-      setDesignations(des.data ?? []);
-    }).catch(() => {
-      // tables may not exist yet — form still works with empty dropdowns
-    });
+    (async () => {
+      try {
+        const [d, des] = await Promise.all([
+          sb.from('departments').select('*').order('name'),
+          sb.from('designations').select('*').order('name'),
+        ]);
+        setDepartments(d.data ?? []);
+        setDesignations(des.data ?? []);
+      } catch {}
+    })();
   }, []);
 
   const set = (k: string, v: string) => setForm(f => ({ ...f, [k]: v }));
