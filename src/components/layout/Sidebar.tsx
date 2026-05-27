@@ -7,7 +7,6 @@ import {
   Megaphone, BarChart3, LogOut, Building2,
   Inbox, CalendarDays,
 } from 'lucide-react';
-import { cn } from '@/lib/utils';
 import { getSupabase } from '@/lib/supabase';
 import { useRouter } from 'next/navigation';
 
@@ -36,52 +35,97 @@ export default function Sidebar() {
   }
 
   return (
-    <aside className="sidebar">
+    <aside style={{
+      position: 'fixed', top: 0, left: 0,
+      width: 260, height: '100vh',
+      background: 'white',
+      borderRight: '1px solid #E8EDF5',
+      display: 'flex', flexDirection: 'column',
+      zIndex: 30,
+      boxShadow: '2px 0 8px rgba(0,0,0,0.04)',
+      fontFamily: "'Inter', -apple-system, sans-serif",
+    }}>
+
       {/* Logo */}
-      <div className="sidebar-logo">
-        <div className="sidebar-logo-icon">
+      <div style={{
+        display: 'flex', alignItems: 'center', gap: 12,
+        padding: '18px 20px',
+        borderBottom: '1px solid #E8EDF5',
+        flexShrink: 0,
+      }}>
+        <div style={{
+          width: 38, height: 38, borderRadius: 11,
+          background: 'linear-gradient(135deg, #0DC9A0 0%, #0AA88A 100%)',
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          flexShrink: 0,
+          boxShadow: '0 3px 10px rgba(13,201,160,0.35)',
+        }}>
           <Building2 size={20} color="white" />
         </div>
         <div>
-          <div style={{ fontSize: '0.9375rem', fontWeight: 700, color: '#111827', lineHeight: 1 }}>HRFlow</div>
-          <div style={{ fontSize: '0.7rem', color: '#0DC9A0', marginTop: 3, fontWeight: 600, letterSpacing: '0.02em' }}>Management System</div>
+          <div style={{ fontSize: 15, fontWeight: 700, color: '#0F172A', lineHeight: 1 }}>HRFlow</div>
+          <div style={{ fontSize: 11, color: '#0DC9A0', marginTop: 3, fontWeight: 600 }}>Management System</div>
         </div>
       </div>
 
       {/* Nav */}
-      <nav className="sidebar-nav">
+      <nav style={{ flex: 1, overflowY: 'auto', padding: '10px 10px' }}>
         {NAV.map(({ href, label, icon: Icon }) => {
           const active = href === '/' ? path === '/' : path.startsWith(href);
           return (
-            <Link key={href} href={href} className={cn('nav-item', active && 'active')}>
-              <Icon size={17} color={active ? '#0DC9A0' : '#9ca3af'} style={{ flexShrink: 0 }} />
+            <Link key={href} href={href} style={{
+              display: 'flex', alignItems: 'center', gap: 11,
+              padding: '9px 12px',
+              borderRadius: 9,
+              fontSize: 14, fontWeight: active ? 600 : 500,
+              color: active ? '#0F172A' : '#64748B',
+              background: active ? '#E6FAF5' : 'transparent',
+              marginBottom: 2,
+              textDecoration: 'none',
+              transition: 'all 0.12s',
+            }}>
+              <Icon size={17} color={active ? '#0DC9A0' : '#94A3B8'} style={{ flexShrink: 0 }} />
               {label}
             </Link>
           );
         })}
       </nav>
 
-      {/* Upgrade CTA */}
-      <div className="sidebar-cta">
-        <p style={{ fontSize: '0.75rem', fontWeight: 700, marginBottom: 4 }}>Level Up Your HR System</p>
-        <p style={{ fontSize: '0.6875rem', color: 'rgba(255,255,255,0.85)', lineHeight: 1.4, marginBottom: 10 }}>
-          Take full control with advanced modules and extended quotas.
-        </p>
+      {/* CTA */}
+      <div style={{
+        margin: '0 10px 10px',
+        borderRadius: 14,
+        padding: '14px 16px',
+        background: 'linear-gradient(135deg, #0DC9A0 0%, #0994A0 100%)',
+        color: 'white',
+        flexShrink: 0,
+      }}>
+        <div style={{ fontSize: 12, fontWeight: 700, marginBottom: 4 }}>Level Up Your HR</div>
+        <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.82)', lineHeight: 1.45, marginBottom: 10 }}>
+          Advanced analytics, payroll automation, and more.
+        </div>
         <button style={{
-          width: '100%', padding: '6px 0', borderRadius: 8,
-          background: 'white', color: '#0DC9A0',
-          fontSize: '0.75rem', fontWeight: 700,
-          cursor: 'pointer', border: 'none',
+          width: '100%', padding: '7px 0', borderRadius: 8,
+          background: 'rgba(255,255,255,0.95)', color: '#0994A0',
+          fontSize: 12, fontWeight: 700, cursor: 'pointer', border: 'none',
+          fontFamily: 'inherit',
         }}>
           Get HRFlow Pro
         </button>
       </div>
 
       {/* Logout */}
-      <div className="sidebar-logout">
-        <button onClick={handleLogout} className="nav-item" style={{ width: '100%' }}>
-          <LogOut size={17} color="#9ca3af" />
-          <span style={{ color: '#6b7280' }}>Logout</span>
+      <div style={{ padding: '0 10px 12px', borderTop: '1px solid #E8EDF5', paddingTop: 10 }}>
+        <button onClick={handleLogout} style={{
+          width: '100%', display: 'flex', alignItems: 'center', gap: 11,
+          padding: '9px 12px', borderRadius: 9,
+          fontSize: 14, fontWeight: 500, color: '#64748B',
+          background: 'none', border: 'none', cursor: 'pointer',
+          fontFamily: 'inherit',
+          textAlign: 'left',
+        }}>
+          <LogOut size={17} color="#94A3B8" />
+          Logout
         </button>
       </div>
     </aside>
