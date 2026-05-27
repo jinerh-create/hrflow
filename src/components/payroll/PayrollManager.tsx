@@ -264,8 +264,12 @@ function PayrollForm({ month, year, existing, onSaved, onCancel }: {
   const sb = getSupabase();
 
   useEffect(() => {
-    sb.from('employees').select('id,full_name,basic_salary').eq('status', 'active').order('full_name')
-      .then(({ data }) => setEmployees(data ?? [])).catch(() => {});
+    (async () => {
+      try {
+        const { data } = await sb.from('employees').select('id,full_name,basic_salary').eq('status', 'active').order('full_name');
+        setEmployees(data ?? []);
+      } catch {}
+    })();
   }, []);
 
   const set = (k: string, v: string) => setForm(f => ({ ...f, [k]: v }));
