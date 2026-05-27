@@ -20,7 +20,7 @@ function EmployeeCard({ emp, onEdit, onView }: { emp: any; onEdit: () => void; o
   const st = STATUS_STYLE[emp.status] ?? STATUS_STYLE.active;
   const initials = emp.full_name?.split(' ').map((w: string) => w[0]).join('').slice(0, 2).toUpperCase() ?? '?';
   const colors = ['#6366F1', '#0DC9A0', '#F59E0B', '#EF4444', '#8B5CF6', '#EC4899'];
-  const avatarBg = colors[emp.full_name?.charCodeAt(0) % colors.length ?? 0];
+  const avatarBg = colors[(emp.full_name?.charCodeAt(0) ?? 0) % colors.length];
 
   return (
     <div style={{
