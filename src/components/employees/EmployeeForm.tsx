@@ -56,6 +56,8 @@ export default function EmployeeForm({ onSaved, onCancel, employee }: Props) {
     ]).then(([d, des]) => {
       setDepartments(d.data ?? []);
       setDesignations(des.data ?? []);
+    }).catch(() => {
+      // tables may not exist yet — form still works with empty dropdowns
     });
   }, []);
 

@@ -133,16 +133,26 @@ export default function EmployeeList() {
   const [showAdd, setShowAdd] = useState(false);
   const [editEmp, setEditEmp] = useState<any>(null);
   const [loading, setLoading] = useState(true);
+  const [dbError, setDbError] = useState('');
   const sb = getSupabase();
 
   const fetchEmployees = async () => {
     setLoading(true);
-    const { data } = await sb.from('employees')
-      .select('*, department:departments(name), designation:designations(name)')
-      .order('created_at', { ascending: false });
-    setEmployees(data ?? []);
-    setFiltered(data ?? []);
-    setLoading(false);
+    setDbError('');
+    try {
+      const { data, error } = await sb.from('employees')
+        .select('*, department:departments(name), designation:designations(name)')
+        .order('created_at', { ascending: false });
+      if (error) throw error;
+      setEmployees(data ?? []);
+      setFiltered(data ?? []);
+    } catch (err: any) {
+      setDbError(err.message ?? 'Failed to load employees');
+      setEmployees([]);
+      setFiltered([]);
+    } finally {
+      setLoading(false);
+    }
   };
 
   useEffect(() => { fetchEmployees(); }, []);
@@ -222,6 +232,15 @@ export default function EmployeeList() {
           <div style={{ width: 40, height: 40, borderRadius: '50%', border: '3px solid #E6FAF5', borderTopColor: '#0DC9A0', animation: 'spin 0.8s linear infinite', margin: '0 auto 14px' }} />
           <p style={{ color: '#94A3B8', fontSize: 14 }}>Loading employees…</p>
           <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
+        </div>
+      ) : dbError ? (
+        <div style={{ background: '#FFF8F0', border: '1px solid #FED7AA', borderRadius: 14, padding: '28px 24px' }}>
+          <p style={{ fontSize: 14, fontWeight: 700, color: '#C2410C', marginBottom: 8 }}>Database not set up yet</p>
+          <p style={{ fontSize: 13, color: '#92400E', marginBottom: 16 }}>The employees table doesn't exist. Run the migration SQL in your Supabase dashboard to get started.</p>
+          <details style={{ fontSize: 12, color: '#78350F' }}>
+            <summary style={{ cursor: 'pointer', fontWeight: 600 }}>Technical details</summary>
+            <pre style={{ marginTop: 8, padding: '8px 12px', background: '#FEF3C7', borderRadius: 8, whiteSpace: 'pre-wrap', wordBreak: 'break-all' }}>{dbError}</pre>
+          </details>
         </div>
       ) : filtered.length === 0 ? (
         <div style={{ background: 'white', borderRadius: 16, border: '1px solid #E8EDF5', padding: '60px 20px', textAlign: 'center' }}>

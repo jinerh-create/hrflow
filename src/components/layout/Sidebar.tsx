@@ -56,9 +56,13 @@ export default function Sidebar() {
         <img
           src="/squad-logo.png"
           alt="SQUAD"
-          style={{ height: 40, width: 'auto', objectFit: 'contain' }}
+          style={{ height: 38, width: 'auto', objectFit: 'contain' }}
+          onError={e => { (e.target as HTMLImageElement).style.display = 'none'; }}
         />
-        <div style={{ fontSize: 11, color: '#64748B', fontWeight: 500, marginTop: 2 }}>Management System</div>
+        <div>
+          <div style={{ fontSize: 16, fontWeight: 800, color: '#0F172A', letterSpacing: '-0.5px', lineHeight: 1 }}>SQUAD</div>
+          <div style={{ fontSize: 10, color: '#94A3B8', fontWeight: 500, marginTop: 2, letterSpacing: '0.05em' }}>MANAGEMENT SYSTEM</div>
+        </div>
       </div>
 
       {/* Nav */}
