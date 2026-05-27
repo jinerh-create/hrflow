@@ -1,6 +1,7 @@
 'use client';
 import { X } from 'lucide-react';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { createPortal } from 'react-dom';
 
 interface Props {
   title: string;
@@ -12,24 +13,30 @@ interface Props {
 const maxWidths = { sm: 440, md: 560, lg: 720, xl: 960 };
 
 export default function Modal({ title, onClose, children, size = 'md' }: Props) {
+  const [mounted, setMounted] = useState(false);
+
   useEffect(() => {
+    setMounted(true);
     const handler = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose(); };
     document.body.style.overflow = 'hidden';
     window.addEventListener('keydown', handler);
     return () => {
       document.body.style.overflow = '';
       window.removeEventListener('keydown', handler);
+      setMounted(false);
     };
   }, [onClose]);
 
-  return (
+  if (!mounted) return null;
+
+  return createPortal(
     <div
       onClick={e => { if (e.target === e.currentTarget) onClose(); }}
       style={{
         position: 'fixed', inset: 0,
         background: 'rgba(15,23,42,0.5)',
         backdropFilter: 'blur(4px)',
-        zIndex: 9999,
+        zIndex: 99999,
         display: 'flex', alignItems: 'center', justifyContent: 'center',
         padding: 16,
         fontFamily: "'Inter', system-ui, sans-serif",
@@ -67,6 +74,7 @@ export default function Modal({ title, onClose, children, size = 'md' }: Props) 
           {children}
         </div>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 }
