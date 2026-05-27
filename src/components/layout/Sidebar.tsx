@@ -5,7 +5,7 @@ import {
   LayoutDashboard, Users, CalendarCheck, CalendarOff,
   Banknote, FolderOpen, TrendingUp, Briefcase,
   Megaphone, BarChart3, LogOut,
-  Inbox, CalendarDays,
+  Inbox, CalendarDays, ClipboardList,
 } from 'lucide-react';
 import { getSupabase } from '@/lib/supabase';
 import { useRouter } from 'next/navigation';
@@ -16,6 +16,7 @@ const NAV = [
   { href: '/calendar', label: 'Calendar', icon: CalendarDays },
   { href: '/employees', label: 'Employees', icon: Users },
   { href: '/attendance', label: 'Attendance', icon: CalendarCheck },
+  { href: '/duty-schedule', label: 'Duty Schedule', icon: ClipboardList },
   { href: '/performance', label: 'Performance', icon: TrendingUp },
   { href: '/payroll', label: 'Payroll', icon: Banknote },
   { href: '/leave', label: 'Leave Management', icon: CalendarOff },
@@ -89,29 +90,6 @@ export default function Sidebar() {
           );
         })}
       </nav>
-
-      {/* CTA */}
-      <div style={{
-        margin: '0 10px 10px',
-        borderRadius: 14,
-        padding: '14px 16px',
-        background: 'linear-gradient(135deg, #0DC9A0 0%, #0994A0 100%)',
-        color: 'white',
-        flexShrink: 0,
-      }}>
-        <div style={{ fontSize: 12, fontWeight: 700, marginBottom: 4 }}>Level Up Your HR</div>
-        <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.82)', lineHeight: 1.45, marginBottom: 10 }}>
-          Advanced analytics, payroll automation, and more.
-        </div>
-        <button style={{
-          width: '100%', padding: '7px 0', borderRadius: 8,
-          background: 'rgba(255,255,255,0.95)', color: '#0994A0',
-          fontSize: 12, fontWeight: 700, cursor: 'pointer', border: 'none',
-          fontFamily: 'inherit',
-        }}>
-          Get SQUAD Pro
-        </button>
-      </div>
 
       {/* Logout */}
       <div style={{ padding: '0 10px 12px', borderTop: '1px solid #E8EDF5', paddingTop: 10 }}>

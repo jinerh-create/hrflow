@@ -140,9 +140,13 @@ export default function EmployeeList() {
     setLoading(true);
     setDbError('');
     try {
-      const { data, error } = await sb.from('employees')
+      const timeout = new Promise<never>((_, reject) =>
+        setTimeout(() => reject(new Error('Request timed out — check Supabase connection')), 8000)
+      );
+      const query = sb.from('employees')
         .select('*, department:departments(name), designation:designations(name)')
         .order('created_at', { ascending: false });
+      const { data, error } = await Promise.race([query, timeout]) as any;
       if (error) throw error;
       setEmployees(data ?? []);
       setFiltered(data ?? []);
