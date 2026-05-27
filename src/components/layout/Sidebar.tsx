@@ -36,37 +36,25 @@ export default function Sidebar() {
   }
 
   return (
-    <aside className="fixed top-0 left-0 h-screen w-[260px] bg-white border-r border-gray-100 flex flex-col z-30 shadow-sm">
+    <aside className="sidebar">
       {/* Logo */}
-      <div className="flex items-center gap-3 px-5 py-5 border-b border-gray-100">
-        <div className="w-9 h-9 rounded-xl flex items-center justify-center shadow-sm" style={{ background: '#0DC9A0' }}>
-          <Building2 className="w-5 h-5 text-white" />
+      <div className="sidebar-logo">
+        <div className="sidebar-logo-icon">
+          <Building2 size={20} color="white" />
         </div>
         <div>
-          <div className="text-gray-900 font-bold text-base leading-none">HRFlow</div>
-          <div className="text-xs mt-0.5 font-medium" style={{ color: '#0DC9A0' }}>Management System</div>
+          <div style={{ fontSize: '0.9375rem', fontWeight: 700, color: '#111827', lineHeight: 1 }}>HRFlow</div>
+          <div style={{ fontSize: '0.7rem', color: '#0DC9A0', marginTop: 3, fontWeight: 600, letterSpacing: '0.02em' }}>Management System</div>
         </div>
       </div>
 
       {/* Nav */}
-      <nav className="flex-1 overflow-y-auto py-3 px-3 space-y-0.5">
+      <nav className="sidebar-nav">
         {NAV.map(({ href, label, icon: Icon }) => {
           const active = href === '/' ? path === '/' : path.startsWith(href);
           return (
-            <Link key={href} href={href} className={cn(
-              'flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all',
-              active
-                ? 'text-gray-800'
-                : 'text-gray-500 hover:text-gray-800 hover:bg-gray-50'
-            )}
-            style={active ? { background: '#E6FAF5' } : undefined}
-            >
-              <Icon
-                className="flex-shrink-0"
-                size={18}
-                style={{ color: active ? '#0DC9A0' : undefined }}
-                color={active ? '#0DC9A0' : '#9CA3AF'}
-              />
+            <Link key={href} href={href} className={cn('nav-item', active && 'active')}>
+              <Icon size={17} color={active ? '#0DC9A0' : '#9ca3af'} style={{ flexShrink: 0 }} />
               {label}
             </Link>
           );
@@ -74,21 +62,26 @@ export default function Sidebar() {
       </nav>
 
       {/* Upgrade CTA */}
-      <div className="mx-3 mb-3 rounded-2xl p-4 text-white" style={{ background: '#0DC9A0' }}>
-        <p className="text-xs font-bold mb-1">Level Up Your HR System</p>
-        <p className="text-[11px] leading-snug mb-3" style={{ color: 'rgba(255,255,255,0.85)' }}>
+      <div className="sidebar-cta">
+        <p style={{ fontSize: '0.75rem', fontWeight: 700, marginBottom: 4 }}>Level Up Your HR System</p>
+        <p style={{ fontSize: '0.6875rem', color: 'rgba(255,255,255,0.85)', lineHeight: 1.4, marginBottom: 10 }}>
           Take full control with advanced modules and extended quotas.
         </p>
-        <button className="w-full py-1.5 rounded-lg bg-white text-xs font-bold hover:opacity-90 transition-opacity" style={{ color: '#0DC9A0' }}>
+        <button style={{
+          width: '100%', padding: '6px 0', borderRadius: 8,
+          background: 'white', color: '#0DC9A0',
+          fontSize: '0.75rem', fontWeight: 700,
+          cursor: 'pointer', border: 'none',
+        }}>
           Get HRFlow Pro
         </button>
       </div>
 
       {/* Logout */}
-      <div className="px-3 pb-3 border-t border-gray-100 pt-2">
-        <button onClick={handleLogout} className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-gray-500 hover:text-red-600 hover:bg-red-50 transition-all">
-          <LogOut size={18} />
-          Logout
+      <div className="sidebar-logout">
+        <button onClick={handleLogout} className="nav-item" style={{ width: '100%' }}>
+          <LogOut size={17} color="#9ca3af" />
+          <span style={{ color: '#6b7280' }}>Logout</span>
         </button>
       </div>
     </aside>

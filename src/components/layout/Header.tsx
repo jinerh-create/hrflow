@@ -13,56 +13,66 @@ export default function Header({ title, breadcrumb, userName = 'Admin', userRole
   const crumbs = breadcrumb ?? [title];
 
   return (
-    <header className="h-16 bg-white border-b border-gray-100 flex items-center justify-between px-6 sticky top-0 z-20">
+    <header className="app-header">
       {/* Breadcrumb */}
-      <div className="flex items-center gap-1.5 text-sm">
-        <Home size={14} className="text-gray-400 flex-shrink-0" />
-        <ChevronRight size={13} className="text-gray-300" />
+      <div style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: '0.875rem' }}>
+        <Home size={14} color="#9ca3af" />
+        <ChevronRight size={13} color="#d1d5db" />
         {crumbs.map((crumb, i) => (
-          <span key={i} className="flex items-center gap-1.5">
-            {i > 0 && <ChevronRight size={13} className="text-gray-300" />}
-            <span className={i === crumbs.length - 1
-              ? 'font-semibold text-gray-900'
-              : 'text-gray-400 font-medium'
-            }>
+          <span key={i} style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+            {i > 0 && <ChevronRight size={13} color="#d1d5db" />}
+            <span style={{
+              fontWeight: i === crumbs.length - 1 ? 600 : 500,
+              color: i === crumbs.length - 1 ? '#111827' : '#9ca3af',
+            }}>
               {crumb}
             </span>
           </span>
         ))}
       </div>
 
-      <div className="flex items-center gap-2">
+      {/* Right side */}
+      <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
         {/* Search */}
-        <div className="relative hidden sm:block">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={15} />
+        <div style={{ position: 'relative', display: 'flex', alignItems: 'center' }}>
+          <Search size={14} color="#9ca3af" style={{ position: 'absolute', left: 10, pointerEvents: 'none' }} />
           <input
-            placeholder="Search anything..."
-            className="pl-9 pr-4 py-2 text-sm rounded-xl border border-gray-200 bg-gray-50 w-56 transition-all focus:outline-none focus:bg-white"
-            style={{ '--tw-ring-color': '#0DC9A0' } as React.CSSProperties}
-            onFocus={e => { e.currentTarget.style.borderColor = '#0DC9A0'; e.currentTarget.style.boxShadow = '0 0 0 3px rgba(13,201,160,0.15)'; }}
-            onBlur={e => { e.currentTarget.style.borderColor = ''; e.currentTarget.style.boxShadow = ''; }}
+            placeholder="Search..."
+            className="form-input"
+            style={{ paddingLeft: 32, paddingRight: 12, width: 200, paddingTop: 7, paddingBottom: 7, fontSize: '0.8125rem' }}
           />
         </div>
 
         {/* Settings */}
-        <button className="p-2 rounded-xl hover:bg-gray-100 text-gray-400 transition-colors">
-          <Settings size={18} />
+        <button style={{ padding: 8, borderRadius: 9, cursor: 'pointer', color: '#9ca3af', display: 'flex' }}
+          className="btn-ghost btn">
+          <Settings size={17} />
         </button>
 
         {/* Notifications */}
-        <button className="p-2 rounded-xl hover:bg-gray-100 text-gray-400 transition-colors relative">
-          <Bell size={18} />
-          <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-red-500 rounded-full" />
+        <button style={{ padding: 8, borderRadius: 9, cursor: 'pointer', color: '#9ca3af', display: 'flex', position: 'relative' }}
+          className="btn-ghost btn">
+          <Bell size={17} />
+          <span style={{ position: 'absolute', top: 7, right: 7, width: 7, height: 7, background: '#ef4444', borderRadius: '50%' }} />
         </button>
 
+        {/* Divider */}
+        <div style={{ width: 1, height: 32, background: '#e8edf2', margin: '0 4px' }} />
+
         {/* User */}
-        <div className="flex items-center gap-2.5 pl-3 border-l border-gray-200 ml-1">
-          <div className="w-8 h-8 rounded-full flex items-center justify-center text-white text-xs font-bold shadow-sm" style={{ background: '#0DC9A0' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+          <div style={{
+            width: 34, height: 34, borderRadius: '50%',
+            background: '#0DC9A0',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            color: 'white', fontSize: '0.75rem', fontWeight: 700,
+            flexShrink: 0,
+          }}>
             {getInitials(userName)}
           </div>
-          <div className="hidden sm:block">
-            <div className="text-sm font-semibold text-gray-800 leading-none">{userName}</div>
-            <div className="text-xs text-gray-400 mt-0.5">{userRole}</div>
+          <div>
+            <div style={{ fontSize: '0.875rem', fontWeight: 600, color: '#1f2937', lineHeight: 1.2 }}>{userName}</div>
+            <div style={{ fontSize: '0.72rem', color: '#9ca3af', marginTop: 1 }}>{userRole}</div>
           </div>
         </div>
       </div>
