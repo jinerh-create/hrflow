@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import { getSupabase } from '@/lib/supabase';
 import { useRouter } from 'next/navigation';
-import { Building2, Eye, EyeOff } from 'lucide-react';
+import { Eye, EyeOff } from 'lucide-react';
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
@@ -25,10 +25,7 @@ export default function LoginPage() {
     <div className="min-h-screen bg-gradient-to-br from-navy-950 via-navy-900 to-blue-950 flex items-center justify-center p-4">
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
-          <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center shadow-xl mx-auto mb-4">
-            <Building2 className="w-8 h-8 text-white" />
-          </div>
-          <h1 className="text-3xl font-bold text-white">SQUAD</h1>
+          <img src="/squad-logo.png" alt="SQUAD" style={{ height: 80, margin: '0 auto 12px', display: 'block', objectFit: 'contain' }} />
           <p className="text-blue-300 mt-1">HR Management System</p>
         </div>
 

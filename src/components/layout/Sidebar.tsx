@@ -4,7 +4,7 @@ import { usePathname } from 'next/navigation';
 import {
   LayoutDashboard, Users, CalendarCheck, CalendarOff,
   Banknote, FolderOpen, TrendingUp, Briefcase,
-  Megaphone, BarChart3, LogOut, Building2,
+  Megaphone, BarChart3, LogOut,
   Inbox, CalendarDays,
 } from 'lucide-react';
 import { getSupabase } from '@/lib/supabase';
@@ -48,24 +48,17 @@ export default function Sidebar() {
 
       {/* Logo */}
       <div style={{
-        display: 'flex', alignItems: 'center', gap: 12,
-        padding: '18px 20px',
+        display: 'flex', alignItems: 'center', gap: 10,
+        padding: '14px 20px',
         borderBottom: '1px solid #E8EDF5',
         flexShrink: 0,
       }}>
-        <div style={{
-          width: 38, height: 38, borderRadius: 11,
-          background: 'linear-gradient(135deg, #0DC9A0 0%, #0AA88A 100%)',
-          display: 'flex', alignItems: 'center', justifyContent: 'center',
-          flexShrink: 0,
-          boxShadow: '0 3px 10px rgba(13,201,160,0.35)',
-        }}>
-          <Building2 size={20} color="white" />
-        </div>
-        <div>
-          <div style={{ fontSize: 15, fontWeight: 700, color: '#0F172A', lineHeight: 1 }}>SQUAD</div>
-          <div style={{ fontSize: 11, color: '#0DC9A0', marginTop: 3, fontWeight: 600 }}>Management System</div>
-        </div>
+        <img
+          src="/squad-logo.png"
+          alt="SQUAD"
+          style={{ height: 40, width: 'auto', objectFit: 'contain' }}
+        />
+        <div style={{ fontSize: 11, color: '#64748B', fontWeight: 500, marginTop: 2 }}>Management System</div>
       </div>
 
       {/* Nav */}
